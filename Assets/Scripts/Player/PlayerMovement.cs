@@ -21,16 +21,28 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer _sr;
     private bool isAlternateSprite = false;
     public float velocity;
-
-    private Vector3 _weaponRight = new Vector3(-0.5033348f, -0.1298687f, 0f);
-    private Vector3 _weaponLeft = new Vector3(0.5033348f, -0.1298687f, 0f);
+    private Vector3 _weaponRight;
+    private Vector3 _weaponLeft;
     private bool isFacingRight = true;
+    private float astronautx;
+    private float laikax;
+    private float astronauty;
+    private float laikay;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        astronautx = shotgun.localPosition.x;
+        astronauty = shotgun.localPosition.y;
+        // laikax = astronautx + 0.611f;
+        // laikay = astronauty + 0.089f;
+        laikax = astronautx;
+        laikay = astronauty;
+        _weaponRight = new Vector3(-astronautx, astronauty, 0f);
+        _weaponLeft = new Vector3(astronautx, astronauty, 0f);
+        
     }
 
     private void Update()
@@ -79,15 +91,20 @@ public class PlayerMovement : MonoBehaviour
                 _sr.sprite = alternateSprite;
                 shoot.bulletCount = 4;
                 shoot.fireRate = 1f;
+                _weaponRight = new Vector3(-laikax, laikay, 0f);
+                _weaponLeft = new Vector3(laikax, laikay, 0f);
             }
             else
             {
                 _sr.sprite = defaultSprite;
                 shoot.bulletCount = 1;
                 shoot.fireRate = 0.5f;
+                _weaponRight = new Vector3(-astronautx, astronauty, 0f);
+                _weaponLeft = new Vector3(astronautx, astronauty, 0f);
             }
             SwapPlaces();
             fm.SwapSprite();
+            shoot.spriteSwap();
         }
     }
 

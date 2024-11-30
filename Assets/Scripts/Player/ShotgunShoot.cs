@@ -10,7 +10,19 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] private float spreadAngle = 30f;
     [SerializeField] public float fireRate = 0.5f;
     [SerializeField] public int bulletCount = 1;
+    [SerializeField] private Sprite defaultSprite;
+    [SerializeField] private Sprite alternateSprite;
+    [SerializeField] private GameObject shootEffectPrefab; // Prefab for the shoot effect
+    [SerializeField] private float effectOffsetDistance = 0.5f; // Distance to move the effect towards the mouse
+
     private float nextFireTime = 0f;
+    private SpriteRenderer _sr;
+    private bool isAlternateSprite = false;
+
+    private void Awake()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
@@ -25,6 +37,11 @@ public class ShotgunShoot : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
+
+            // Play shooting effect
+            PlayShootEffect();
+
+            // Shoot bullets
             if (bulletPrefab != null && firePoint != null && bulletCount > 0)
             {
                 float startAngle = -spreadAngle / 2f;
@@ -40,12 +57,51 @@ public class ShotgunShoot : MonoBehaviour
                         if (bulletCount == 1)
                         {
                             rb.velocity = firePoint.right * bulletSpeed;
-                        }else
+                        }
+                        else
+                        {
                             rb.velocity = rotation * Vector2.right * bulletSpeed;
+                        }
                     }
                 }
             }
         }
-        
+    }
+
+    private void PlayShootEffect()
+    {
+        if (shootEffectPrefab != null && firePoint != null)
+        {
+            // Get mouse position in world space
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+
+            // Calculate direction from firePoint to mouse
+            Vector3 directionToMouse = (mousePosition - firePoint.position).normalized;
+
+            // Offset the effect position slightly in the direction of the mouse
+            Vector3 effectPosition = firePoint.position + directionToMouse * effectOffsetDistance;
+
+            // Instantiate the shoot effect at the offset position
+            GameObject shootEffect = Instantiate(shootEffectPrefab, effectPosition, firePoint.rotation);
+            
+            shootEffect.GetComponent<Animator>().SetTrigger("shoot");
+
+            // Optional: Destroy the shoot effect after its animation completes
+            Destroy(shootEffect, 0.2f); // Adjust the time to match the animation length
+        }
+    }
+
+    public void spriteSwap()
+    {
+        isAlternateSprite = !isAlternateSprite;
+        if (isAlternateSprite)
+        {
+            _sr.sprite = alternateSprite;
+        }
+        else
+        {
+            _sr.sprite = defaultSprite;
+        }
     }
 }
