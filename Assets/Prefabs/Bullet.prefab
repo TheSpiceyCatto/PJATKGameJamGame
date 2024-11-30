@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4295720171485401816}
   - component: {fileID: 4719009233422484488}
   - component: {fileID: -6276380962968763064}
+  - component: {fileID: 4164467406913560394}
   - component: {fileID: 5550048092417899419}
   m_Layer: 6
   m_Name: Bullet
@@ -127,6 +128,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBounces: 3
+--- !u!114 &4164467406913560394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406833550035572855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9401892d553d4907783db747c6c81c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!70 &5550048092417899419
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
