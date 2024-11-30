@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             return;
         hp -= damage;
         PlayerEventManager.UpdateHealth(hp);
-        StartCoroutine(Invulnerability(iframeTime));
+        StartCoroutine(Invulnerability());
     }
 
     private void Die() {
@@ -38,12 +38,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         _box.enabled = false;
     }
 
-    private IEnumerator Invulnerability(float duration) {
+    private IEnumerator Invulnerability() {
         _canDamage = false;
         if (hp <= 0) {
             PlayerEventManager.Death();
         }
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(iframeTime);
         _canDamage = true;
     }
 }

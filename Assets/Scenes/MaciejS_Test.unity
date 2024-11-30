@@ -977,6 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  iframeTime: 3
 --- !u!1 &1068628643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,8 +1080,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 3
   damage: 1
+  friction: 0.3
+  knockbackSpeed: 20
+  iframeTime: 0.2
   moveSpeed: 5
-  friction: 0.5
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 576
