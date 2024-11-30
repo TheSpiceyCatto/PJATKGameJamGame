@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _weaponRight;
     private Vector3 _weaponLeft;
     private bool isFacingRight = true;
+    private bool canMove = true;
     private float astronautx;
     private float laikax;
     private float astronauty;
@@ -49,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
-        _rb.velocity = _movement * moveSpeed;
+        if (canMove)
+            _rb.velocity = _movement * moveSpeed;
         _animator.SetFloat("Velocity", _rb.velocity.magnitude);
         Flip();
         if (InputManager.Swap)
@@ -120,5 +122,9 @@ public class PlayerMovement : MonoBehaviour
     public void Szczek()
     {
         _animator.SetTrigger("Szczek");
+    }
+
+    public void SetMove(bool moveState) {
+        canMove = moveState;
     }
 }

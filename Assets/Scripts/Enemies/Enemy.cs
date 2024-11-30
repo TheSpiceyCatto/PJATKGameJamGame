@@ -39,12 +39,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     }
 
     
-    protected void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable)) {
-            damageable.TakeDamage(damage);
-            StartCoroutine(Knockback());
-        }
-    }
     
     #region Math Functions
 
