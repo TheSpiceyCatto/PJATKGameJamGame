@@ -6,35 +6,40 @@ using UnityEngine;
 public class RunnerEnemy : Enemy
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float frictionAmount = 0.5f;
+    [Header("Raycast")]
+    [SerializeField] private LayerMask ignoreLayer;
     private bool hasLineOfSight;
-    private GameObject player;
-    private Rigidbody2D rb;
-    
-    private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
+
+    public override void TakeDamage(int damageAmount) {
+        if (invulnerable)
+            return;
+        hp -= damageAmount;
+        StartCoroutine(Knockback());
+        if (hp <= 0) {
+            Die();
+        }
     }
 
+
     private void FixedUpdate() {
-        Vector2 toPlayer = vecToTarget(player.transform);
-        RaycastHit2D los = Physics2D.Raycast(transform.position, toPlayer);
+        if (invulnerable) {
+            Friction(friction);
+            return;
+        }
+        toPlayer = vecToTarget(player.transform);
+        RaycastHit2D los = Physics2D.Raycast(transform.position, toPlayer, Mathf.Infinity, ~ignoreLayer);
         if (los.collider != null) {
             hasLineOfSight = los.collider.CompareTag("Player");
         }
         if (hasLineOfSight) {
-            rb.AddForce(toPlayer * moveSpeed);
+            rb.velocity = toPlayer.normalized * moveSpeed;
             Debug.DrawRay(transform.position, toPlayer, Color.magenta);
         } else {
-            Friction();
+            Friction(friction);
             Debug.DrawRay(transform.position, toPlayer, Color.red);
         }
     }
-    private void Friction() {
-        float friction = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
-        friction *= Mathf.Sign(rb.velocity.x);
-        float frictionY = Mathf.Min(Mathf.Abs(rb.velocity.y), Mathf.Abs(frictionAmount));
-        frictionY *= Mathf.Sign(rb.velocity.y);
-        rb.AddForce(Vector2.one * -new Vector2(friction, frictionY), ForceMode2D.Impulse);
+    protected override void Die() {
+        Destroy(gameObject);
     }
 }
