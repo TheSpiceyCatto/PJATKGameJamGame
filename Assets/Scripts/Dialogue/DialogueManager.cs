@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> _sentences;
     
     public Text titleText;
-    public Text dialogueText;
+    public TextMeshProUGUI dialogueText;
 
     public Animator animator;
     private static readonly int IsOpen = Animator.StringToHash("IsOpen");
@@ -31,6 +33,14 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextSentence();
     }
+
+    private void Update(){
+        if (InputManager.Talk){
+            Debug.Log("talk:" + InputManager.Talk);
+            DisplayNextSentence();
+        }
+    }
+    
 
     public void DisplayNextSentence()
     {
