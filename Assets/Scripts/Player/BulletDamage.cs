@@ -8,6 +8,7 @@ public class BulletDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.TryGetComponent(out IDamageable damageable)) {
             damageable.TakeDamage(damage);
+            Destroy(gameObject);
         }
     }
 }

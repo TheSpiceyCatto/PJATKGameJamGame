@@ -7,9 +7,10 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private int hp = 3;
-    private SpriteRenderer sr;
-    private BoxCollider2D box;
-    private PlayerMovement player;
+    [SerializeField] private float iframeTime = 1f;
+    private SpriteRenderer _sr;
+    private BoxCollider2D _box;
+    private bool _canDamage = true;
 
     private void Awake() {
         PlayerEventManager.OnDeath += Die;
@@ -20,21 +21,29 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     private void Start() {
-        sr = GetComponent<SpriteRenderer>();
-        box = GetComponent<BoxCollider2D>();
-        player = GetComponent<PlayerMovement>();
+        _sr = GetComponent<SpriteRenderer>();
+        _box = GetComponent<BoxCollider2D>();
     }
 
     public void TakeDamage(int damage) {
+        if (!_canDamage)
+            return;
         hp -= damage;
         PlayerEventManager.UpdateHealth(hp);
-        if (hp <= 0) {
-            PlayerEventManager.Death();
-        }
+        StartCoroutine(Invulnerability());
     }
 
     private void Die() {
-        sr.enabled = false;
-        box.enabled = false;
+        _sr.enabled = false;
+        _box.enabled = false;
+    }
+
+    private IEnumerator Invulnerability() {
+        _canDamage = false;
+        if (hp <= 0) {
+            PlayerEventManager.Death();
+        }
+        yield return new WaitForSeconds(iframeTime);
+        _canDamage = true;
     }
 }

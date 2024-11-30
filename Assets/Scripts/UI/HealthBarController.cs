@@ -18,7 +18,6 @@ public class HealthBarController : MonoBehaviour
     private void UpdateHealthBar(int healthAmount)
     {
         // This should be a value between 0 and 1 representing the percentage of health remaining
-        Debug.Log(healthAmount);
         float healthPercent = (float)healthAmount / maxHealth;
         healthFillImage.fillAmount = healthPercent;
     }
