@@ -11,6 +11,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     [SerializeField] protected float friction = 0.5f;
     [SerializeField] private float knockbackSpeed = 5f;
     [SerializeField] private float iframeTime = 1f;
+    [Header("Raycast")]
+    [SerializeField] protected LayerMask ignoreLayer;
+    protected bool hasLineOfSight;
     protected bool invulnerable = false;
     protected Vector2 toPlayer;
     protected Rigidbody2D rb;
@@ -22,13 +25,20 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     }
 
     public virtual void TakeDamage(int damageAmount) {
+        if (invulnerable)
+            return;
         hp -= damageAmount;
+        StartCoroutine(Knockback());
         if (hp <= 0) {
             Die();
         }
     }
-    protected abstract void Die();
-    protected IEnumerator Knockback() {
+
+    private void Die() {
+        Destroy(gameObject);
+    }
+
+    private IEnumerator Knockback() {
         invulnerable = true;
         rb.velocity = Vector2.zero;
         rb.AddForce(-toPlayer.normalized * knockbackSpeed, ForceMode2D.Impulse);
@@ -45,7 +55,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     
     #region Math Functions
 
-    protected Vector2 vecToTarget(Transform to) {
+    protected Vector2 VecToTarget(Transform to) {
         return (Vector2)to.position - (Vector2)transform.position;
     }
     
