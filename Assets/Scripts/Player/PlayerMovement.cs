@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -90,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 _sr.sprite = alternateSprite;
                 shoot.bulletCount = 4;
-                shoot.fireRate = 1f;
+                shoot.fireRate = 2f;
+                shoot.bulletSpeed = 15f;
                 _weaponRight = new Vector3(-laikax, laikay, 0f);
                 _weaponLeft = new Vector3(laikax, laikay, 0f);
             }
@@ -113,5 +115,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 tempPosition = transform.position;
         transform.position = follower.position;
         follower.position = tempPosition + (tempPosition - transform.position).normalized * minDistance;
+    }
+
+    public void Szczek()
+    {
+        _animator.SetTrigger("Szczek");
     }
 }

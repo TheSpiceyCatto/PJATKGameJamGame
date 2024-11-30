@@ -36,7 +36,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Update(){
         if (InputManager.Talk){
-            Debug.Log("talk:" + InputManager.Talk);
             DisplayNextSentence();
         }
     }

@@ -7,7 +7,7 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject szczekPrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] public float bulletSpeed = 10f;
     [SerializeField] private float spreadAngle = 30f;
     [SerializeField] public float fireRate = 0.5f;
     [SerializeField] public int bulletCount = 1;
@@ -15,6 +15,7 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] private Sprite alternateSprite;
     [SerializeField] private GameObject shootEffectPrefab; // Prefab for the shoot effect
     [SerializeField] private float effectOffsetDistance = 0.5f; // Distance to move the effect towards the mouse
+    [SerializeField] private PlayerMovement pm;
 
     private float nextFireTime = 0f;
     private SpriteRenderer _sr;
@@ -37,6 +38,7 @@ public class ShotgunShoot : MonoBehaviour
     {
         if (Time.time >= nextFireTime)
         {
+            pm.Szczek();
             nextFireTime = Time.time + fireRate;
 
             // Play shooting effect
