@@ -13,7 +13,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     [SerializeField] private float iframeTime = 1f;
     [Header("Raycast")]
     [SerializeField] protected LayerMask ignoreLayer;
-    protected bool hasLineOfSight;
+    // protected bool hasLineOfSight;
     protected bool invulnerable = false;
     protected Vector2 toPlayer;
     protected Rigidbody2D rb;
@@ -38,13 +38,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
         Destroy(gameObject);
     }
 
-    private IEnumerator Knockback() {
-        invulnerable = true;
-        rb.velocity = Vector2.zero;
-        rb.AddForce(-toPlayer.normalized * knockbackSpeed, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(iframeTime);
-        invulnerable = false;
-    }
     
     protected void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.TryGetComponent(out IDamageable damageable)) {
@@ -57,6 +50,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
 
     protected Vector2 VecToTarget(Transform to) {
         return (Vector2)to.position - (Vector2)transform.position;
+    }
+    
+    private IEnumerator Knockback() {
+        invulnerable = true;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(-toPlayer.normalized * knockbackSpeed, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(iframeTime);
+        invulnerable = false;
     }
     
     protected void Friction(float frictionAmount) {
