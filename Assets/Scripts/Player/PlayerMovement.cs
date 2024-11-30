@@ -15,11 +15,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private FollowerMovement fm;
     [SerializeField] public float swapCooldown = 0.5f;
     private float lastSwap = 0f;
-
+    private Animator _animator;
     private Vector2 _movement;
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private bool isAlternateSprite = false;
+    public float velocity;
 
     private Vector3 _weaponRight = new Vector3(-0.5033348f, -0.1298687f, 0f);
     private Vector3 _weaponLeft = new Vector3(0.5033348f, -0.1298687f, 0f);
@@ -29,16 +30,19 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
         _rb.velocity = _movement * moveSpeed;
+        _animator.SetFloat("Velocity", _rb.velocity.magnitude);
         Flip();
         if (InputManager.Swap)
         {
             Swap();
+            _animator.SetBool("IsAstronaut", !isAlternateSprite);
         }
     }
 

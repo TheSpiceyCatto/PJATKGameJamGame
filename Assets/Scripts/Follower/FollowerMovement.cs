@@ -13,10 +13,14 @@ public class FollowerMovement : MonoBehaviour
     [SerializeField] private Sprite alternateSprite;
     private bool _isAlternateSprite = false;
     private SpriteRenderer _sr;
+    private Animator _animator;
+    private Rigidbody2D _rb; 
     
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -28,10 +32,12 @@ public class FollowerMovement : MonoBehaviour
             float followSpeed = Mathf.Lerp(minFollowSpeed, maxFollowSpeed, (distance - minDistance) / minDistance);
             Vector3 direction = (targetPosition - transform.position).normalized;
             transform.position += direction * followSpeed * Time.deltaTime;
+            _animator.SetFloat("Velocity", followSpeed);
         }
         else
         {
             MoveToTargetPosition(targetPosition);
+            _animator.SetFloat("Velocity", 0);
         }
     }
 
@@ -42,6 +48,7 @@ public class FollowerMovement : MonoBehaviour
 
     public void SwapSprite()
     {
+        _animator.SetBool("IsLaika", _isAlternateSprite);
         _isAlternateSprite = !_isAlternateSprite;
         if (_isAlternateSprite)
         {
