@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShotgunShoot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject szczekPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float spreadAngle = 30f;
@@ -50,7 +51,15 @@ public class ShotgunShoot : MonoBehaviour
                 {
                     float angle = startAngle + i * angleStep;
                     Quaternion rotation = firePoint.rotation * Quaternion.Euler(0, 0, angle);
-                    GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
+                    GameObject bullet;
+                    if (!isAlternateSprite)
+                    {
+                        bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
+                    }
+                    else
+                    {
+                        bullet = Instantiate(szczekPrefab, firePoint.position, rotation);
+                    }
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                     if (rb != null)
                     {
@@ -82,13 +91,25 @@ public class ShotgunShoot : MonoBehaviour
             // Offset the effect position slightly in the direction of the mouse
             Vector3 effectPosition = firePoint.position + directionToMouse * effectOffsetDistance;
 
-            // Instantiate the shoot effect at the offset position
             GameObject shootEffect = Instantiate(shootEffectPrefab, effectPosition, firePoint.rotation);
-            
             shootEffect.GetComponent<Animator>().SetTrigger("shoot");
-
+            if (!isAlternateSprite)
+            {
+                shootEffect.GetComponent<Animator>().SetBool("isAstronaut", true);
+            }
+            else
+            {
+                shootEffect.GetComponent<Animator>().SetBool("isAstronaut", false);
+            }
+            // Instantiate the shoot effect at the offset position
+                
             // Optional: Destroy the shoot effect after its animation completes
             Destroy(shootEffect, 0.2f); // Adjust the time to match the animation length
+            
+            // Optional: Destroy the shoot effect after its animation completes
+            Destroy(shootEffect, 0.2f); // Adjust the time to match the animation length
+
+            
         }
     }
 
