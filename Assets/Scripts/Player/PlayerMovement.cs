@@ -10,6 +10,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private Sprite alternateSprite;
     [SerializeField] private ShotgunShoot shoot;
+    [SerializeField] private Transform follower;
+    [SerializeField] private float minDistance = 2f;
+    [SerializeField] private FollowerMovement fm;
+    [SerializeField] public float swapCooldown = 0.5f;
+    private float lastSwap = 0f;
 
     private Vector2 _movement;
     private Rigidbody2D _rb;
@@ -61,20 +66,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void Swap()
     {
-        isAlternateSprite = !isAlternateSprite;
-        if (isAlternateSprite)
+        if (Time.time >= lastSwap)
         {
-            _sr.sprite = alternateSprite;
-            shoot.bulletCount = 4;
-            shoot.fireRate = 1f;
+            lastSwap = Time.time + swapCooldown;
+            isAlternateSprite = !isAlternateSprite;
+            if (isAlternateSprite)
+            {
+                _sr.sprite = alternateSprite;
+                shoot.bulletCount = 4;
+                shoot.fireRate = 1f;
+            }
+            else
+            {
+                _sr.sprite = defaultSprite;
+                shoot.bulletCount = 1;
+                shoot.fireRate = 0.5f;
+            }
+            SwapPlaces();
+            fm.SwapSprite();
         }
-        else
-        {
-            _sr.sprite = defaultSprite;
-            shoot.bulletCount = 1;
-            shoot.fireRate = 0.5f;
-        }
+    }
 
-        //_sr.sprite = isAlternateSprite ? alternateSprite : defaultSprite;
+    private void SwapPlaces()
+    {
+        Vector3 tempPosition = transform.position;
+        transform.position = follower.position;
+        follower.position = tempPosition + (tempPosition - transform.position).normalized * minDistance;
     }
 }
