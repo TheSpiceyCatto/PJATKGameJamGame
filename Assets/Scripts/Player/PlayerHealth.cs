@@ -41,17 +41,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
     
     protected void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable)) {
+        if (_canDamage && other.gameObject.TryGetComponent(out IDamageable damageable)) {
             TakeDamage(1);
-            StartCoroutine(Knockback(_player.transform.position - other.transform.position));
+            StartCoroutine(Knockback(VecToTarget(other.transform)));
         }
     }
     private IEnumerator Knockback(Vector2 direction) {
         _player.SetMove(false);
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(direction.normalized * knockbackSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(-direction.normalized * knockbackSpeed, ForceMode2D.Impulse);
         yield return new WaitForSeconds(knockbackDuration);
         _player.SetMove(true);
+    }
+    
+    private Vector2 VecToTarget(Transform to) {
+        return (Vector2)to.position - (Vector2)transform.position;
     }
 
     private void Die() {
