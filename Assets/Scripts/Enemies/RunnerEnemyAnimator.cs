@@ -7,12 +7,6 @@ using Random = UnityEngine.Random;
 
 public class RunnerEnemyAnimator : MonoBehaviour
 {
-    [SerializeField] private RuntimeAnimatorController redAnimator;
-    [SerializeField] private RuntimeAnimatorController blueAnimator;
-    // [SerializeField] private float attackTime = 0.35f;
-    // [SerializeField] private float squishTime = 0.2f;
-    // [SerializeField] private float hitTime = 0.3f;
-    
     private Animator animator;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
@@ -39,7 +33,6 @@ public class RunnerEnemyAnimator : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        animator.runtimeAnimatorController = Random.Range(0, 2) == 0 ? redAnimator : blueAnimator;
     }
 
     private void Update() {
