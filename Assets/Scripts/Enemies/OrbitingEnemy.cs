@@ -19,16 +19,8 @@ public class OrbitingEnemy : Enemy
         float clampedY = Mathf.Clamp(rb.velocity.y, -velocityClamp, velocityClamp);
         rb.velocity = new Vector2(clampedX, clampedY);
         toPlayer = VecToTarget(player.transform);
-        // RaycastHit2D los = Physics2D.Raycast(transform.position, toPlayer, Mathf.Infinity, ~ignoreLayer);
-        // if (los.collider) {
-        //     hasLineOfSight = los.collider.CompareTag("Player");
-        // }
-        // if (hasLineOfSight) {
-        //     lastKnownPosition = player.transform.position;
+        if (playerDead)
+            toPlayer *= -1;
         rb.AddForce(toPlayer.normalized * moveSpeed); 
-        // } else {
-        //     rb.AddForce(lastKnownPosition.normalized * (moveSpeed * 0.5f));
-        //     Friction(friction);
-        // }
     }
 }

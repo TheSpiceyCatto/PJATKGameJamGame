@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Managers;
 using UnityEngine;
 
 //Will probably use this class for things every enemy should have
@@ -15,9 +16,18 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     [SerializeField] protected LayerMask ignoreLayer;
     // protected bool hasLineOfSight;
     protected bool invulnerable = false;
+    protected bool playerDead = false;
     protected Vector2 toPlayer;
     protected Rigidbody2D rb;
     protected GameObject player;
+
+    private void Awake() {
+        PlayerEventManager.OnDeath += RunOnPlayerDeath;
+    }
+
+    private void OnDestroy() {
+        PlayerEventManager.OnDeath -= RunOnPlayerDeath;
+    }
     
     protected void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +42,10 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
         if (hp <= 0) {
             Die();
         }
+    }
+
+    private void RunOnPlayerDeath() {
+        playerDead = true;
     }
 
     private void Die() {

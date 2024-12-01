@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4386642661645356572}
   - component: {fileID: 4548693650953638749}
   - component: {fileID: 3933872656962979446}
+  - component: {fileID: 355414207148392653}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -199,7 +200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  iframeTime: 3
+  knockbackSpeed: 30
+  knockbackDuration: 0.2
+  iframeTime: 0.5
 --- !u!95 &3933872656962979446
 Animator:
   serializedVersion: 5
@@ -221,6 +224,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &355414207148392653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805026374942530824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18351b5dd75f88feeac69a39c876314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8339589520239408974
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +444,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3406833550035572855, guid: eaa6b59d92f53f1478a6df45b778a92a, type: 3}
+  szczekPrefab: {fileID: 4541027871720320345, guid: 467cd26e56c222c4bbc32cfcd41973c1, type: 3}
   firePoint: {fileID: 3445083882786620208}
   bulletSpeed: 30
   spreadAngle: 30
   fireRate: 0.5
   bulletCount: 1
+  defaultSprite: {fileID: 21300000, guid: 58372f35c29592d4d8c258dd3b0862da, type: 3}
+  alternateSprite: {fileID: 21300000, guid: a0744ea615288ac4687f264dc4d5a39e, type: 3}
+  shootEffectPrefab: {fileID: 5388217879084072117, guid: 38143b9566920ac4a890f4a5f19f3940, type: 3}
+  effectOffsetDistance: 0.5
+  pm: {fileID: 777672054204470515}
