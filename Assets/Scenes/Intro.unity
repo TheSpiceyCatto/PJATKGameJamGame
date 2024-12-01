@@ -372,12 +372,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 5
   cutsceneImages:
-  - {fileID: 21300000, guid: f0e0cb05d90975e4db28ece5838ea677, type: 3}
-  - {fileID: 21300000, guid: 9d7bfd45157080548961f0d6f292b4a6, type: 3}
-  - {fileID: 21300000, guid: 017d4f5fc55bd894dbb6bd46eeb2295f, type: 3}
-  - {fileID: 21300000, guid: 609956d5b1b2984489325cf4da667bde, type: 3}
-  - {fileID: 21300000, guid: 6e50a7d56617cb74f8ffafa9dcc12960, type: 3}
-  - {fileID: 21300000, guid: a87947e16ae9f91408fa7acb5a22e3d2, type: 3}
+  - {fileID: 21300000, guid: 07b6a11c4f365ded28793df5317df7ac, type: 3}
+  - {fileID: 21300000, guid: 7c46c28d5f6739da28f8b3e695a08ca5, type: 3}
+  - {fileID: 21300000, guid: b975971ef91bb67dfa17c9567052c1f7, type: 3}
+  - {fileID: 21300000, guid: 0f062f458b4cf9edd83cc085651e6a6c, type: 3}
 --- !u!1 &2133109855
 GameObject:
   m_ObjectHideFlags: 0
