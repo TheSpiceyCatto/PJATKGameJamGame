@@ -9,8 +9,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Scenes/Intro");
     }
 
-    public void Scoreboard(){
-        SceneManager.LoadScene("Scoreboard");
+    public void HowToPlay(){
+        SceneManager.LoadScene("HowToPlay");
+    }
+    public void Credits(){
+        SceneManager.LoadScene("Credits");
     }
 
     public void Quit(){
