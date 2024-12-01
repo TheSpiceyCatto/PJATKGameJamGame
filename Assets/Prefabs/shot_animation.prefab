@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9156359031684350717}
   - component: {fileID: 2565618737320393527}
   - component: {fileID: 797358753120131514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shot_animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +92,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: -1106307045
+  m_SortingLayer: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 593a64a7068dd324893461fa41881d69, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private FollowerMovement fm;
     [SerializeField] public float swapCooldown = 0.5f;
+    [SerializeField] public Animator gun;
     private float lastSwap = 0f;
     private Animator _animator;
     private Vector2 _movement;
@@ -65,7 +66,11 @@ public class PlayerMovement : MonoBehaviour
         }
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
         if (canMove)
+        {
             _rb.velocity = _movement * moveSpeed;
+        }
+
+        
         _animator.SetFloat("Velocity", _rb.velocity.magnitude);
         Flip();
         if (InputManager.Swap)
@@ -151,5 +156,11 @@ public class PlayerMovement : MonoBehaviour
         isDead = true;
         fm.Die();
         _rb.velocity = Vector2.zero;
+    }
+
+    private void Ascension()
+    {
+        _animator.SetTrigger("Ascension");
+        gun.SetTrigger("Asc");
     }
 }
