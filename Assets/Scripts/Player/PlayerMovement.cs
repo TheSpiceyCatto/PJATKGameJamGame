@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Managers;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -30,9 +32,11 @@ public class PlayerMovement : MonoBehaviour
     private float laikax;
     private float astronauty;
     private float laikay;
+    private bool isDead;
 
     private void Awake()
     {
+        PlayerEventManager.OnDeath += Die;
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -47,8 +51,17 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void OnDestroy()
+    {
+        PlayerEventManager.OnDeath -= Die;
+    }
+
     private void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
         if (canMove)
             _rb.velocity = _movement * moveSpeed;
@@ -130,5 +143,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetMove(bool moveState) {
         canMove = moveState;
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        fm.Die();
+        _rb.velocity = Vector2.zero;
     }
 }

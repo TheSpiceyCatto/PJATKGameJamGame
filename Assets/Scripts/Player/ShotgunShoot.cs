@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public class ShotgunShoot : MonoBehaviour
@@ -20,14 +21,20 @@ public class ShotgunShoot : MonoBehaviour
     private float nextFireTime = 0f;
     private SpriteRenderer _sr;
     private bool isAlternateSprite = false;
+    private bool playerDead = false;
 
-    private void Awake()
-    {
+    private void Awake() {
+        PlayerEventManager.OnDeath += PlayerDeath;
         _sr = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnDestroy() {
+        PlayerEventManager.OnDeath -= PlayerDeath;
     }
 
     void Update()
     {
+        if (playerDead) return;
         if (InputManager.Shoot)
         {
             Shoot();
@@ -113,5 +120,10 @@ public class ShotgunShoot : MonoBehaviour
         {
             _sr.sprite = defaultSprite;
         }
+    }
+
+    private void PlayerDeath() {
+        playerDead = true;
+        _sr.enabled = false;
     }
 }

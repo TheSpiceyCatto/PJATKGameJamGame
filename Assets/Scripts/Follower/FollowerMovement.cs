@@ -72,4 +72,9 @@ public class FollowerMovement : MonoBehaviour
             _sr.sprite = defaultSprite;
         }
     }
+
+    public void Die()
+    {
+        _animator.SetTrigger("Death");
+    }
 }
