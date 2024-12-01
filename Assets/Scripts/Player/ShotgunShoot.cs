@@ -83,16 +83,10 @@ public class ShotgunShoot : MonoBehaviour
     {
         if (shootEffectPrefab != null && firePoint != null)
         {
-            // Get mouse position in world space
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
-
-            // Calculate direction from firePoint to mouse
             Vector3 directionToMouse = (mousePosition - firePoint.position).normalized;
-
-            // Offset the effect position slightly in the direction of the mouse
             Vector3 effectPosition = firePoint.position + directionToMouse * effectOffsetDistance;
-
             GameObject shootEffect = Instantiate(shootEffectPrefab, effectPosition, firePoint.rotation);
             shootEffect.GetComponent<Animator>().SetTrigger("shoot");
             if (!isAlternateSprite)
@@ -103,15 +97,8 @@ public class ShotgunShoot : MonoBehaviour
             {
                 shootEffect.GetComponent<Animator>().SetBool("isAstronaut", false);
             }
-            // Instantiate the shoot effect at the offset position
-                
-            // Optional: Destroy the shoot effect after its animation completes
-            Destroy(shootEffect, 0.2f); // Adjust the time to match the animation length
-            
-            // Optional: Destroy the shoot effect after its animation completes
-            Destroy(shootEffect, 0.2f); // Adjust the time to match the animation length
-
-            
+            Destroy(shootEffect, 0.2f);
+            Destroy(shootEffect, 0.2f);
         }
     }
 

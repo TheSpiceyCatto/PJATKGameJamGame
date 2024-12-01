@@ -16,7 +16,7 @@ public class FollowerMovement : MonoBehaviour
     private SpriteRenderer _sr;
     private Animator _animator;
     private Rigidbody2D _rb;
-    private bool isActivated = false;
+    public bool isActivated = false;
     
     private void Awake()
     {

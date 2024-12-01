@@ -56,8 +56,11 @@ public class PlayerMovement : MonoBehaviour
         Flip();
         if (InputManager.Swap)
         {
-            Swap();
-            _animator.SetBool("IsAstronaut", !isAlternateSprite);
+            if (fm.isActivated)
+            {
+                Swap();
+                _animator.SetBool("IsAstronaut", !isAlternateSprite);
+            }
         }
     }
 
@@ -93,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _sr.sprite = alternateSprite;
                 shoot.bulletCount = 4;
-                shoot.fireRate = 2f;
+                shoot.fireRate = 1f;
                 shoot.bulletSpeed = 15f;
                 _weaponRight = new Vector3(-laikax, laikay, 0f);
                 _weaponLeft = new Vector3(laikax, laikay, 0f);
@@ -103,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
                 _sr.sprite = defaultSprite;
                 shoot.bulletCount = 1;
                 shoot.fireRate = 0.5f;
+                shoot.bulletSpeed = 30f;
                 _weaponRight = new Vector3(-astronautx, astronauty, 0f);
                 _weaponLeft = new Vector3(astronautx, astronauty, 0f);
             }
