@@ -11,23 +11,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private float knockbackSpeed = 5f;
     [SerializeField] private float knockbackDuration = 0.5f;
     [SerializeField] private float iframeTime = 1f;
-    private SpriteRenderer _sr;
-    private BoxCollider2D _box;
     private PlayerMovement _player;
     private Rigidbody2D _rb;
     private bool _canDamage = true;
 
-    private void Awake() {
-        PlayerEventManager.OnDeath += Die;
-    }
-
-    private void OnDestroy() {
-        PlayerEventManager.OnDeath -= Die;
-    }
-
     private void Start() {
-        _sr = GetComponent<SpriteRenderer>();
-        _box = GetComponent<BoxCollider2D>();
         _player = GetComponent<PlayerMovement>();
         _rb = GetComponent<Rigidbody2D>();
     }
@@ -56,11 +44,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     
     private Vector2 VecToTarget(Transform to) {
         return (Vector2)to.position - (Vector2)transform.position;
-    }
-
-    private void Die() {
-        _sr.enabled = false;
-        _box.enabled = false;
     }
 
     private IEnumerator Invulnerability() {
