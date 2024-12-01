@@ -13,14 +13,8 @@ public class RunnerEnemy : Enemy
             return;
         }
         toPlayer = VecToTarget(player.transform);
-        // RaycastHit2D los = Physics2D.Raycast(transform.position, toPlayer, Mathf.Infinity, ~ignoreLayer);
-        // if (los.collider) {
-        //     hasLineOfSight = los.collider.CompareTag("Player");
-        // }
-        // if (hasLineOfSight) {
+        if (playerDead)
+            toPlayer *= -1;
         rb.velocity = toPlayer.normalized * moveSpeed;
-        // } else {
-        //     Friction(friction);
-        // }
     }
 }
