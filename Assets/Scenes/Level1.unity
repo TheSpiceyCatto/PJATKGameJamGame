@@ -827,22 +827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3419953080829369536, guid: c534d9dade8e47170a498e4db7947e8c, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3419953080829369536, guid: c534d9dade8e47170a498e4db7947e8c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1106307045
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613356123158293678, guid: c534d9dade8e47170a498e4db7947e8c, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613356123158293678, guid: c534d9dade8e47170a498e4db7947e8c, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1106307045
-      objectReference: {fileID: 0}
     - target: {fileID: 4252727989593522799, guid: c534d9dade8e47170a498e4db7947e8c, type: 3}
       propertyPath: fm
       value: 
@@ -947,14 +931,6 @@ PrefabInstance:
     - target: {fileID: 446148823763927408, guid: d197bc9dfc59d3bd6baffb5f2ccb7ff0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146620154374612722, guid: d197bc9dfc59d3bd6baffb5f2ccb7ff0, type: 3}
-      propertyPath: m_ClearFlags
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146620154374612722, guid: d197bc9dfc59d3bd6baffb5f2ccb7ff0, type: 3}
-      propertyPath: orthographic size
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2611693661453527450, guid: d197bc9dfc59d3bd6baffb5f2ccb7ff0, type: 3}
       propertyPath: m_Name
@@ -1456,7 +1432,9 @@ PrefabInstance:
       value: Dialog_CAnvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5181313764082557124, guid: 05502b8778bde874dacbee84d4fea04b, type: 3}
+    - {fileID: 2094686038896366678, guid: 05502b8778bde874dacbee84d4fea04b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05502b8778bde874dacbee84d4fea04b, type: 3}
@@ -2407,18 +2385,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1848743419590800242, guid: a5cf1b53484cc6211824a106eb5d5c12, type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1848743419590800242, guid: a5cf1b53484cc6211824a106eb5d5c12, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 1848743419590800242, guid: a5cf1b53484cc6211824a106eb5d5c12, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
     - target: {fileID: 2063168834879698483, guid: a5cf1b53484cc6211824a106eb5d5c12, type: 3}
       propertyPath: m_Name
       value: PlayerHealthCanvas
@@ -8562,22 +8528,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3162988836543661075, guid: 14a2ce7aaf7829e44aa2ce9b0764e446, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162988836543661075, guid: 14a2ce7aaf7829e44aa2ce9b0764e446, type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162988836543661075, guid: 14a2ce7aaf7829e44aa2ce9b0764e446, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162988836543661075, guid: 14a2ce7aaf7829e44aa2ce9b0764e446, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1106307045
-      objectReference: {fileID: 0}
     - target: {fileID: 4675511597431239583, guid: 14a2ce7aaf7829e44aa2ce9b0764e446, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.29
@@ -9545,24 +9495,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128185259}
   m_CullTransparentMesh: 1
---- !u!1 &4415868512120420722
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8343789120821776707}
-  - component: {fileID: 7118024344902001860}
-  - component: {fileID: 8343789120821776708}
-  m_Layer: 0
-  m_Name: EndLevelDialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1001 &5367070228323042104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9620,6 +9552,82 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df4407b630174d94da65b28e52ebe205, type: 3}
+--- !u!1001 &5732311083871348410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.025171911
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153886955896574174, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598883573701528320, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: m_Name
+      value: EndLevelDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150611678291065035, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'Now the good part is, those aliens'' body structure shares incredible
+        amount of similarities to our earthly arthropods...
+
+        ...which means
+        their external sceleton is made mostly of chitin like biopolymeres, polysaccharides
+        with B-glucosamine molecules linked by B-1, 4- glycosidic bonds...
+
+        ...with
+        proteins, calcium salts and magnesium, the nitrogen atoms in the structure
+        allows  intermolecular bonds to be extremly strong...
+
+        ...thanks
+        to dilutant stored in their cell walls it also easly merges with other materials...
+
+        Got
+        what i mean?'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e47957db22c80fb4eb8225cb56f00b66, type: 3}
 --- !u!1001 &5987958909825370787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9685,56 +9693,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c492e7cd82f524043885456c76007939, type: 3}
---- !u!114 &7118024344902001860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415868512120420722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43773599e55d0b741adbd55b3b76a692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    title: Dog
-    sentences:
-    - Woof you' re finally awake!
-    - Up! Up! i know you've been through a lot but we are not safe yet...
-    - oh no, they are already here! hoped i would have more time to explain-
-    - Quickly! Shoot those bastards!
-    - What? you dont even have a gun?
-    - '...fine, here, take this
-
-      *item gained - laser blaster*'
---- !u!4 &8343789120821776707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415868512120420722}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2, y: -0.4, z: -0.025171911}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8343789120821776708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415868512120420722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6411fce95343e4f8cabc156b13b956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9762,7 +9720,7 @@ SceneRoots:
   - {fileID: 1121389041}
   - {fileID: 701190142}
   - {fileID: 5367070228323042104}
-  - {fileID: 8343789120821776707}
+  - {fileID: 5732311083871348410}
   - {fileID: 48578329}
   - {fileID: 772221891}
   - {fileID: 5987958909825370787}

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5598883573701528320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153886955896574174}
+  - component: {fileID: 8150611678291065035}
+  - component: {fileID: 3551354875275619942}
+  m_Layer: 0
+  m_Name: EndLevelDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1153886955896574174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598883573701528320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.2, y: -0.4, z: -0.025171911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8150611678291065035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598883573701528320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43773599e55d0b741adbd55b3b76a692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    title: Dog
+    sentences:
+    - Good, i think we got rid of them
+    - Now the good part is, those aliens' body structure shares incredible amount
+      of similarities to our earthly arthropods which means their external sceleton
+      is made mostly of chitin like biopolymeres, polysaccharides with B-glucosamine
+      molecules linked by B-1, 4- glycosidic bonds. Got it?
+    - ...right... you can USE their BODY PARTS to REPAIR your S.P.A.C.E S.H.I.P.
+--- !u!114 &3551354875275619942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598883573701528320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6411fce95343e4f8cabc156b13b956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

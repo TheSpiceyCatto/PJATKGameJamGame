@@ -9,15 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: cf01f79b8a922364bae2e4ebc7e854c8
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: de653e491a1b2fa4999ef9820d15dd9e
   - enabled: 1
-    path: Assets/Scenes/Scoreboard.unity
-    guid: 495ff43f5edf6914bbb91d8743ef62bd
-  - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: dff8f64771075b844a49677c5bd395a1
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: cf01f79b8a922364bae2e4ebc7e854c8
+  - enabled: 1
+    path: Assets/Scenes/MidCutscene.unity
+    guid: 3f3b86a6b88851097ba3e53597abf222
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 933cb3e4276b0f343936e6c39b99c11a
+  - enabled: 1
+    path: Assets/Scenes/Scoreboard.unity
+    guid: 495ff43f5edf6914bbb91d8743ef62bd
   m_configObjects: {}
