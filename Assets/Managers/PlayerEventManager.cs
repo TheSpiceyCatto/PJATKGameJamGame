@@ -6,6 +6,8 @@ namespace Managers
     {
         public static event Action<int> OnHealthUpdate;
         public static event Action OnDeath;
+        
+        
 
         public static void UpdateHealth(int currentHealth) {
             OnHealthUpdate?.Invoke(currentHealth);

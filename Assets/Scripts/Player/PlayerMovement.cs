@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float astronauty;
     private float laikay;
     private bool isDead;
+    private bool cutscene;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isDead)
+        if (isDead || cutscene)
         {
             return;
         }

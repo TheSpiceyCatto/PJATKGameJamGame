@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,5 +68,11 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool(IsOpen, false);
+        GameEventManager.EndCutscene();
     }
+
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     StartDialogue();
+    // }
 }
