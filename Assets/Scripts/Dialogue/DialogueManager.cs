@@ -9,8 +9,8 @@ public class DialogueManager : MonoBehaviour
 {
     private Queue<string> _sentences;
     
-    public Text titleText;
-    public TextMeshProUGUI dialogueText;
+    
+    public Text dialogueText;
 
     public Animator animator;
     private static readonly int IsOpen = Animator.StringToHash("IsOpen");
@@ -21,10 +21,8 @@ public class DialogueManager : MonoBehaviour
         _sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
-    {
+    public void StartDialogue(Dialogue dialogue){
         animator.SetBool(IsOpen, true);
-        titleText.text = dialogue.title;
         _sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
