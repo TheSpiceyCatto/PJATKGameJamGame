@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private enemy[] enemies;
-    private static int EnemyCount;
+    public static int EnemyCount;
 
     [Serializable]
     private struct enemy {
