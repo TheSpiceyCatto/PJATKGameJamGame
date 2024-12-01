@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2059825469185047556}
   - component: {fileID: 8015904773859474198}
   - component: {fileID: 2598324924247617443}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: FollowingEnemyBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

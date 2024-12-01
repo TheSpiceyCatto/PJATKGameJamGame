@@ -7,6 +7,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private enemy[] enemies;
+    private static int EnemyCount;
 
     [Serializable]
     private struct enemy {
@@ -22,6 +23,20 @@ public class EnemySpawner : MonoBehaviour
     {
         GameEventManager.OnCutsceneEnd -= InstantiateEnemies;
     }
+    
+    private void Start()
+    {
+        foreach (var enemyType in enemies) {
+            EnemyCount += enemyType.amount;
+        }
+    }
+
+    public static void DecreaseCount() {
+        EnemyCount -= 1;
+        if (EnemyCount <= 0) {
+            GameEventManager.EnemiesDefeated();
+        }
+    }
 
 
     private void InstantiateEnemies() {
@@ -30,5 +45,6 @@ public class EnemySpawner : MonoBehaviour
                 Instantiate(enemyType.enemies, transform.position, Quaternion.identity);
             }
         }
+        Destroy(gameObject);
     }
 }

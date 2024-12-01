@@ -49,6 +49,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable {
     }
 
     private void Die() {
+        EnemySpawner.DecreaseCount();
         Destroy(gameObject);
     }
 
