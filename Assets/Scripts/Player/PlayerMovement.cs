@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private FollowerMovement fm;
     [SerializeField] public float swapCooldown = 0.5f;
     [SerializeField] public Animator gun;
+    [SerializeField] private bool ascendOnEnd = false;
+    private SpriteRenderer sr;
     private float lastSwap = 0f;
     private Animator _animator;
     private Vector2 _movement;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         PlayerEventManager.OnDeath += Die;
+        GameEventManager.OnEnemiesDefeated += Ascension;
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -50,12 +53,13 @@ public class PlayerMovement : MonoBehaviour
         laikay = astronauty;
         _weaponRight = new Vector3(-astronautx, astronauty, 0f);
         _weaponLeft = new Vector3(astronautx, astronauty, 0f);
-        
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void OnDestroy()
     {
         PlayerEventManager.OnDeath -= Die;
+        GameEventManager.OnEnemiesDefeated -= Ascension;
     }
 
     private void Update()
@@ -157,10 +161,34 @@ public class PlayerMovement : MonoBehaviour
         fm.Die();
         _rb.velocity = Vector2.zero;
     }
-
+    
     private void Ascension()
     {
-        _animator.SetTrigger("Ascension");
-        gun.SetTrigger("Asc");
+        if (ascendOnEnd) {
+            cutscene = true;
+            _rb.velocity = Vector2.zero;
+            StartCoroutine(AscendAndDisappear());
+        }
+    }
+    
+    private IEnumerator AscendAndDisappear()
+    {
+        float ascendSpeed = 2f;
+        float fadeDuration = 2f;
+        float targetHeight = 10f;
+        float initialAlpha = _sr.color.a;
+        Vector3 startPosition = transform.position;
+
+        float elapsedTime = 0f;
+        while (transform.position.y < startPosition.y + targetHeight)
+        {
+            transform.position += Vector3.up * (ascendSpeed * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(initialAlpha, 0f, elapsedTime / fadeDuration);
+            _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, alpha);
+            yield return null;
+        }
+        _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0f);
+        gameObject.SetActive(false);
     }
 }
