@@ -29,10 +29,6 @@ public class InputManager : MonoBehaviour
         Movement = _moveAction.ReadValue<Vector2>();
         Shoot = _shootAction.ReadValue<float>() > 0;
         Swap = Mouse.current.rightButton.wasPressedThisFrame;
-        //Talk = _talkAction.ReadValue<float>() > 0;
         Talk = Keyboard.current.eKey.wasPressedThisFrame;
-        if (Talk){
-            Debug.Log(Talk);
-        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void NewGame(){
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Scenes/Intro");
     }
 
     public void HowToPlay(){

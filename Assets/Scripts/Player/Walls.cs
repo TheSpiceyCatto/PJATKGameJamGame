@@ -9,6 +9,7 @@ public class Walls : MonoBehaviour
     [SerializeField] private LayerMask redLayer;
     [SerializeField] private LayerMask blueLayer;
     [SerializeField] private LayerMask bulletLayer;
+    [SerializeField] private FollowerMovement fm;
     private bool isRedWall = true;
     private Collider2D collider;
     void Start()
@@ -19,7 +20,7 @@ public class Walls : MonoBehaviour
     
     void Update()
     {
-        if (InputManager.Swap)
+        if (InputManager.Swap && fm.isActivated)
         {
             isRedWall = !isRedWall;
             SwapWalls();

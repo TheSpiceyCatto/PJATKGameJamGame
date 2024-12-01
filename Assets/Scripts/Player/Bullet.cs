@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         if (_rb != null && _rb.velocity != Vector2.zero)
         {
             float angle = Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
     

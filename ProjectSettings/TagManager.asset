@@ -17,9 +17,7 @@ TagManager:
   - RedWall
   - BlueWall
   - Enemy
-  - 
-  - 
-  - 
+  - EnemyHitbox
   - 
   - 
   - 
@@ -42,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1012878083
+    locked: 0
+  - name: Obstacles
+    uniqueID: 2718072775
+    locked: 0
+  - name: Player
+    uniqueID: 3188660251
     locked: 0

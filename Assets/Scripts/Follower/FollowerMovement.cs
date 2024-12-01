@@ -11,10 +11,12 @@ public class FollowerMovement : MonoBehaviour
     [SerializeField] private Vector2 offset = new Vector2(-2f, 0f);
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private Sprite alternateSprite;
+    [SerializeField] private float activationDistance = 1.5f;
     private bool _isAlternateSprite = false;
     private SpriteRenderer _sr;
     private Animator _animator;
-    private Rigidbody2D _rb; 
+    private Rigidbody2D _rb;
+    public bool isActivated = false;
     
     private void Awake()
     {
@@ -25,19 +27,30 @@ public class FollowerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 targetPosition = player.position + (Vector3)offset;
-        float distance = Vector3.Distance(transform.position, targetPosition);
-        if (distance > minDistance)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (!isActivated)
         {
-            float followSpeed = Mathf.Lerp(minFollowSpeed, maxFollowSpeed, (distance - minDistance) / minDistance);
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            transform.position += direction * followSpeed * Time.deltaTime;
-            _animator.SetFloat("Velocity", followSpeed);
+            if (distanceToPlayer <= activationDistance)
+            {
+                isActivated = true;
+            }
         }
         else
         {
-            MoveToTargetPosition(targetPosition);
-            _animator.SetFloat("Velocity", 0);
+            Vector3 targetPosition = player.position + (Vector3)offset;
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            if (distance > minDistance)
+            {
+                float followSpeed = Mathf.Lerp(minFollowSpeed, maxFollowSpeed, (distance - minDistance) / minDistance);
+                Vector3 direction = (targetPosition - transform.position).normalized;
+                transform.position += direction * followSpeed * Time.deltaTime;
+                _animator.SetFloat("Velocity", followSpeed);
+            }
+            else
+            {
+                MoveToTargetPosition(targetPosition);
+                _animator.SetFloat("Velocity", 0);
+            }
         }
     }
 
@@ -58,5 +71,10 @@ public class FollowerMovement : MonoBehaviour
         {
             _sr.sprite = defaultSprite;
         }
+    }
+
+    public void Die()
+    {
+        _animator.SetTrigger("Death");
     }
 }
