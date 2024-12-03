@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void NewGame(){
-        Debug.Log("mainmenuklikam");
         SceneManager.LoadScene("Scenes/Intro");
     }
 

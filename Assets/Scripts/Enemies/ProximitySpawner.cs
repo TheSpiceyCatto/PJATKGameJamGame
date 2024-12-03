@@ -8,6 +8,7 @@ public class ProximitySpawner : MonoBehaviour
 {
     [SerializeField] private enemy[] enemies;
     [SerializeField] private float timeBetweenSpawns = 2f;
+    private bool hasTriggered = false;
 
     [Serializable]
     private struct enemy {
@@ -23,7 +24,8 @@ public class ProximitySpawner : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player") && !hasTriggered) {
+            hasTriggered = true;
             StartCoroutine(InstantiateEnemies());
         }
     }
