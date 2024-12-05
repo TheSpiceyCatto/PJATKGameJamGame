@@ -39,17 +39,21 @@ public class FollowerMovement : MonoBehaviour
         {
             Vector3 targetPosition = player.position + (Vector3)offset;
             float distance = Vector3.Distance(transform.position, targetPosition);
+
             if (distance > minDistance)
             {
                 float followSpeed = Mathf.Lerp(minFollowSpeed, maxFollowSpeed, (distance - minDistance) / minDistance);
                 Vector3 direction = (targetPosition - transform.position).normalized;
                 transform.position += direction * followSpeed * Time.deltaTime;
                 _animator.SetFloat("Velocity", followSpeed);
+                UpdateSpriteDirection(direction);
             }
             else
             {
                 MoveToTargetPosition(targetPosition);
                 _animator.SetFloat("Velocity", 0);
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                UpdateSpriteDirection(directionToPlayer);
             }
         }
     }
@@ -76,5 +80,17 @@ public class FollowerMovement : MonoBehaviour
     public void Die()
     {
         _animator.SetTrigger("Death");
+    }
+    
+    private void UpdateSpriteDirection(Vector3 direction)
+    {
+        if (direction.x > 0)
+        {
+            _sr.flipX = false;
+        }
+        else if (direction.x < 0)
+        {
+            _sr.flipX = true;
+        }
     }
 }

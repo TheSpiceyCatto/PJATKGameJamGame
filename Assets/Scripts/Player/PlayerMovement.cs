@@ -167,28 +167,27 @@ public class PlayerMovement : MonoBehaviour
         if (ascendOnEnd) {
             cutscene = true;
             _rb.velocity = Vector2.zero;
-            StartCoroutine(AscendAndDisappear());
+            //StartCoroutine(AscendAndDisappear());
         }
     }
     
-    private IEnumerator AscendAndDisappear()
-    {
-        float ascendSpeed = 2f;
-        float fadeDuration = 2f;
-        float targetHeight = 10f;
-        float initialAlpha = _sr.color.a;
-        Vector3 startPosition = transform.position;
-
-        float elapsedTime = 0f;
-        while (transform.position.y < startPosition.y + targetHeight)
-        {
-            transform.position += Vector3.up * (ascendSpeed * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(initialAlpha, 0f, elapsedTime / fadeDuration);
-            _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, alpha);
-            yield return null;
-        }
-        _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0f);
-        gameObject.SetActive(false);
-    }
+    // private IEnumerator AscendAndDisappear()
+    // {
+    //     float ascendSpeed = 2f;
+    //     float fadeDuration = 2f;
+    //     float targetHeight = 10f;
+    //     float initialAlpha = _sr.color.a;
+    //     Vector3 startPosition = transform.position;
+    //     float elapsedTime = 0f;
+    //     while (transform.position.y < startPosition.y + targetHeight)
+    //     {
+    //         transform.position += Vector3.up * (ascendSpeed * Time.deltaTime);
+    //         elapsedTime += Time.deltaTime;
+    //         float alpha = Mathf.Lerp(initialAlpha, 0f, elapsedTime / fadeDuration);
+    //         _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, alpha);
+    //         yield return null;
+    //     }
+    //     _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0f);
+    //     gameObject.SetActive(false);
+    // }
 }
