@@ -1,12 +1,4 @@
-using System;
-using System.Numerics;
-using Managers;
-using Unity.VisualScripting;
-//using UnityEditor.Animations;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Random = UnityEngine.Random;
-using Vector3 = UnityEngine.Vector3;
 
 public class OrbitingEnemyAnimator : MonoBehaviour
 {
