@@ -14,8 +14,7 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
     private static readonly int IsOpen = Animator.StringToHash("IsOpen");
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         _sentences = new Queue<string>();
@@ -66,11 +65,11 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool(IsOpen, false);
-        GameEventManager.EndCutscene();
+        GameEventManager.DialogueEnded();
+        if (EndLevelDialogue.Instance != null)
+        {
+            EndLevelDialogue.Instance.DialogueCompleted();
+        }
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     StartDialogue();
-    // }
+    
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowerMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float maxFollowSpeed = 5f;
-    [SerializeField] private float minFollowSpeed = 1;  
+    [SerializeField] public float maxFollowSpeed = 5f;
+    [SerializeField] public float minFollowSpeed = 1;  
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private Vector2 offset = new Vector2(-2f, 0f);
     [SerializeField] private Sprite defaultSprite;

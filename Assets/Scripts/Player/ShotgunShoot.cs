@@ -18,7 +18,7 @@ public class ShotgunShoot : MonoBehaviour
     [SerializeField] private float effectOffsetDistance = 0.5f; // Distance to move the effect towards the mouse
     [SerializeField] private PlayerMovement pm;
 
-    private float nextFireTime = 0f;
+    public float nextFireTime = 0f;
     private SpriteRenderer _sr;
     private bool isAlternateSprite = false;
     private bool playerDead = false;

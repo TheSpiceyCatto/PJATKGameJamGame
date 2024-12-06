@@ -16,12 +16,12 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void Awake() {
-        GameEventManager.OnCutsceneEnd += InstantiateEnemies;
+        GameEventManager.OnDialogueEnd += InstantiateEnemies;
     }
 
     private void OnDestroy()
     {
-        GameEventManager.OnCutsceneEnd -= InstantiateEnemies;
+        GameEventManager.OnDialogueEnd -= InstantiateEnemies;
     }
     
     private void Start()

@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private FollowerMovement fm;
     [SerializeField] public float swapCooldown = 0.5f;
-    [SerializeField] public Animator gun;
+    [SerializeField] public GameObject gun;
     [SerializeField] private bool ascendOnEnd = false;
     private SpriteRenderer sr;
     private float lastSwap = 0f;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         PlayerEventManager.OnDeath += Die;
-        GameEventManager.OnEnemiesDefeated += Ascension;
+        GameEventManager.OnEnemiesDefeated += StartEndSequence;
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         PlayerEventManager.OnDeath -= Die;
-        GameEventManager.OnEnemiesDefeated -= Ascension;
+        GameEventManager.OnEnemiesDefeated -= StartEndSequence;
     }
 
     private void Update()
@@ -162,32 +162,72 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = Vector2.zero;
     }
     
-    private void Ascension()
+    private void StartEndSequence()
     {
-        if (ascendOnEnd) {
+        if (ascendOnEnd)
+        {
             cutscene = true;
             _rb.velocity = Vector2.zero;
-            //StartCoroutine(AscendAndDisappear());
+            GameEventManager.OnAscDialogueEnd += Ascension;
+            EndLevelDialogue.Instance.TriggerDialogue();
         }
     }
     
-    // private IEnumerator AscendAndDisappear()
-    // {
-    //     float ascendSpeed = 2f;
-    //     float fadeDuration = 2f;
-    //     float targetHeight = 10f;
-    //     float initialAlpha = _sr.color.a;
-    //     Vector3 startPosition = transform.position;
-    //     float elapsedTime = 0f;
-    //     while (transform.position.y < startPosition.y + targetHeight)
-    //     {
-    //         transform.position += Vector3.up * (ascendSpeed * Time.deltaTime);
-    //         elapsedTime += Time.deltaTime;
-    //         float alpha = Mathf.Lerp(initialAlpha, 0f, elapsedTime / fadeDuration);
-    //         _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, alpha);
-    //         yield return null;
-    //     }
-    //     _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0f);
-    //     gameObject.SetActive(false);
-    // }
+    private void Ascension()
+    {
+        GameEventManager.OnAscDialogueEnd -= Ascension;
+        StartCoroutine(AscendAndDisappear());
+    }
+    
+    private IEnumerator AscendAndDisappear()
+    {
+        shoot.nextFireTime += 1000;
+        Destroy(gun);
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider != null)
+        {
+            playerCollider.enabled = false;
+        }
+        if (isAlternateSprite)
+        {
+            _animator.enabled = false;
+            _sr.sprite = defaultSprite;
+            isAlternateSprite = false;
+            _animator.enabled = true;
+            _animator.SetBool("IsAstronaut", !isAlternateSprite);
+            fm.SwapSprite();
+        }
+        if (fm != null)
+        {
+            Rigidbody2D followerRb = fm.GetComponent<Rigidbody2D>();
+            if (followerRb != null)
+            {
+                followerRb.velocity = Vector2.zero;
+                fm.maxFollowSpeed = 0;
+                fm.minFollowSpeed = 0;
+            }
+        }
+        float ascendSpeed = 2f;
+        float fadeDuration = 2f;
+        float targetHeight = 15f;
+        float initialAlpha = _sr.color.a;
+        Vector3 startPosition = transform.position;
+        float elapsedTime = 0f;
+        Cinemachine.CinemachineVirtualCamera virtualCamera = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
+        while (transform.position.y < startPosition.y + targetHeight)
+        {
+            transform.position += Vector3.up * (ascendSpeed * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            if (transform.position.y >= startPosition.y + 5f && virtualCamera != null)
+            {
+                virtualCamera.Follow = null;
+            }
+            float alpha = Mathf.Lerp(initialAlpha, 0f, elapsedTime / fadeDuration);
+            _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, alpha);
+            yield return null;
+        }
+        _sr.color = new Color(_sr.color.r, _sr.color.g, _sr.color.b, 0f);
+        gameObject.SetActive(false);
+        GameEventManager.EndCutscene();
+    }
 }

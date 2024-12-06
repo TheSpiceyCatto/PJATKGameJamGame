@@ -10,8 +10,10 @@ public class Walls : MonoBehaviour
     [SerializeField] private LayerMask blueLayer;
     [SerializeField] private LayerMask bulletLayer;
     [SerializeField] private FollowerMovement fm;
+    [SerializeField] public float swapCooldown = 0.5f;
     private bool isRedWall = true;
     private Collider2D collider;
+    private float lastSwap = 0f;
     void Start()
     {
         collider = GetComponent<Collider2D>();
@@ -20,8 +22,9 @@ public class Walls : MonoBehaviour
     
     void Update()
     {
-        if (InputManager.Swap && fm.isActivated)
+        if (InputManager.Swap && fm.isActivated && Time.time >= lastSwap)
         {
+            lastSwap = Time.time + swapCooldown;
             isRedWall = !isRedWall;
             SwapWalls();
         }
